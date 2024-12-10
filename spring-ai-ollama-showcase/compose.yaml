@@ -1,12 +1,15 @@
 services:
   postgres:
-    image: 'postgres:17'
+    image: 'arm64v8/postgres' # mac m1
+    # image: 'postgres:17'
     environment:
       - 'POSTGRES_DB=postgres'
       - 'POSTGRES_PASSWORD=postgres'
       - 'POSTGRES_USER=postgres'
+    volumes:
+      - './data:/var/lib/postgresql/data'
     ports:
-      - '5432'
+      - '5432:5432'
   chroma:
     image: chromadb/chroma:latest
     ports:
